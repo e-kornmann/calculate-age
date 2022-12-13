@@ -1,5 +1,11 @@
 import assert from "assert";
-import { getAge, getAgeGroup, getAgeForPerson, divideIt } from "./index.mjs";
+import {
+  getAge,
+  getAgeGroup,
+  getAgeForPerson,
+  divideIt,
+  addWithLog,
+} from "./index.mjs";
 
 describe("age calculator", () => {
   it("someone born 1972 is 50 2022", () => {
@@ -339,37 +345,59 @@ describe("division", () => {
     // assert
     assert.equal(result, 2);
   });
-  it('4 divided with 0 is ???', () => {
+  it("4 divided with 0 is ???", () => {
     // act
     const result = divideIt(4, 2);
- 
-       assert.throws(
-      () => divideIt(4, 0),
-      Error);
-      assert.equal(result, 2);
+
+    assert.throws(() => divideIt(4, 0), Error);
+    assert.equal(result, 2);
   });
-  it('4 divided with 0 should throw error', () => {
+  it("4 divided with 0 should throw error", () => {
     // arrange
     try {
       // act
       const result = divideIt(4, 0);
-  
     } catch (error) {
       // assert
       assert.notEqual(error, undefined);
-      assert.equal(error.message, 'Please... No division by zero... I cannot cope with that. /Your computer');
+      assert.equal(
+        error.message,
+        "Please... No division by zero... I cannot cope with that. /Your computer"
+      );
     }
   });
-  it.skip('throwing an error in a test will...', () => {
-
-       const equal = (actual, expected) => {
-        if(actual != expected) {
+  it.skip("throwing an error in a test will...", () => {
+    const equal = (actual, expected) => {
+      if (actual != expected) {
         throw new Error(`${actual} is not equal to ${expected}`);
       }
-      }
-      equal(4,2)
+    };
+    equal(4, 2);
   });
 });
- 
+
+describe("callbacks", () => {
+  it.skip("adding with logger", () => {
+    // arrange
+    const logThis2 = (message) => {
+      console.log(message);
+    };
+
+    // act
+    const result = addWithLog(1, 89, logThis2);
+
     // assert
-    // console.log(result);
+    assert.equal(result, 90);
+  });
+  it("adding with inline logger", () => {
+    // act
+    const result = addWithLog(1, 89, (message) => {
+      console.log('kijk maar');
+      console.log(message);
+   
+    });
+
+    // assert
+    assert.equal(result, 90);
+  });
+});

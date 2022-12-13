@@ -11,5 +11,8 @@
   "license": "ISC",
   "devDependencies": {
     "mocha": "^10.1.0"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.0"
   }
 }
