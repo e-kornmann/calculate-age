@@ -349,7 +349,7 @@ describe("division", () => {
     // act
     const result = divideIt(4, 2);
 
-    assert.throws(() => divideIt(4, 0), Error);
+    assert.throws(() => divideIt(4, 3), Error);
     assert.equal(result, 2);
   });
   it("4 divided with 0 should throw error", () => {
